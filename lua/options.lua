@@ -44,3 +44,6 @@ vim.o.termencoding='utf-8'
 --- active line
 vim.o.cursorline=true
 vim.o.modeline=true
+
+--- mouse
+vim.o.mouse=''
