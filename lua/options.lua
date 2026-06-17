@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 --- display unicode characters (e.g. pipe for tab)
-vim.o.termencoding='utf-8'
+--- vim.o.termencoding='utf-8'
 
 --- active line
 vim.o.cursorline=true
@@ -53,3 +53,18 @@ vim.o.modeline=true
 
 --- mouse
 --- vim.o.mouse=''
+
+--- diff whats new since last save
+vim.api.nvim_create_user_command("DiffOrig", function()
+  vim.cmd("vert new")
+  vim.opt_local.buftype = "nofile"
+  vim.opt_local.bufhidden = "wipe"
+  vim.opt_local.buflisted = false
+  vim.opt_local.swapfile = false
+
+  vim.cmd("read ++edit #")
+  vim.cmd("0delete _")
+  vim.cmd("diffthis")
+  vim.cmd("wincmd p")
+  vim.cmd("diffthis")
+end, {})
