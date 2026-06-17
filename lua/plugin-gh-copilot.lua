@@ -80,21 +80,6 @@ vim.api.nvim_create_user_command("AIModels", function()
   print(vim.inspect(ai.models))
 end, {})
 
--- My personal stuff --
-vim.api.nvim_create_user_command("DiffOrig", function()
-  vim.cmd("vert new")
-  vim.opt_local.buftype = "nofile"
-  vim.opt_local.bufhidden = "wipe"
-  vim.opt_local.buflisted = false
-  vim.opt_local.swapfile = false
-
-  vim.cmd("read ++edit #")
-  vim.cmd("0delete _")
-  vim.cmd("diffthis")
-  vim.cmd("wincmd p")
-  vim.cmd("diffthis")
-end, {})
-
 
 -- Stronger CopilotChat window styling via a dedicated highlight namespace
 local copilot_chat_ns = vim.api.nvim_create_namespace("copilot_chat_window")
