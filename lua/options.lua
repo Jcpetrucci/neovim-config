@@ -1,3 +1,9 @@
+-- UI basics
+vim.o.termguicolors = true
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.completeopt = "menuone,noinsert,noselect,popup"
+
 --- legacy stuff, what does this do?
 vim.o.backspace='indent,eol,start'
 vim.o.fileencodings='ucs-bom,utf-8,latin1'
@@ -46,4 +52,4 @@ vim.o.cursorline=true
 vim.o.modeline=true
 
 --- mouse
-vim.o.mouse=''
+--- vim.o.mouse=''

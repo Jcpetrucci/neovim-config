@@ -17,17 +17,6 @@ require 'colorscheme'
 -- e.g. line numbers enabled
 require 'options'
 
--- [[ plugins ]]
---- get "lazy" for managing plugins
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
-  if vim.v.shell_error ~= 0 then error('Error cloning lazy.nvim:\n' .. out) end
-end
+-- Official GitHub Copilot plugin
+require 'plugin-gh-copilot'
 
-local rtp = vim.opt.rtp
-rtp:prepend(lazypath)
-
---- initialize lazy, then load plugins using lazy
-require('lazy').setup(require 'plugins')
