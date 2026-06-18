@@ -10,13 +10,12 @@ vim.g.have_nerd_font = false
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 
--- [[ colorscheme / theme ]]
-require 'colorscheme'
-
 -- [[ vim Settings options ]]
 -- e.g. line numbers enabled
 require 'options'
 
+-- [[ colorscheme / theme ]]
+require 'colorscheme'
+
 -- Official GitHub Copilot plugin
 require 'plugin-gh-copilot'
-
