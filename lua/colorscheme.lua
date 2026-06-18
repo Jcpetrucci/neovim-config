@@ -16,7 +16,6 @@ _G.modified = function()
   return vim.bo.modified and "[*]" or ""
 end
 
-
 -- Statusline
 vim.opt.statusline = table.concat({
   "%7*[%n]",                             -- buffer number
@@ -32,8 +31,6 @@ vim.opt.statusline = table.concat({
   "%3* col:%03c",                        -- column
   "%2* %w %P ",                          -- preview flag + top/bot
 })
-
-
 
 --- colorscheme
 local function apply_highlight_overrides()
@@ -58,19 +55,28 @@ local function apply_highlight_overrides()
     ctermbg = 234,
   })
 
+  -- diff
   set(0, "DiffText", {
     bold = true,
     cterm = { bold = true },
-    ctermfg = 232,
+    ctermfg = 16,
     ctermbg = 173,
+    bg = "#3b5b8a",
+  })
+
+  set(0, "DiffAdd", {
+    bg = "#38CF32",
+    ctermbg = 82,
   })
 
   set(0, "DiffChange", {
     ctermbg = 66,
+    bg = "#1f3a5b",
   })
 
   set(0, "DiffDelete", {
     ctermfg = 167,
+    bg = "#5b1f1f",
   })
 
   -- links / other
@@ -79,17 +85,18 @@ local function apply_highlight_overrides()
   set(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
 
   -- statusline user groups
-  set(0, "User1", { ctermfg = 0,   ctermbg = 75 })
-  set(0, "User2", { ctermfg = 0,   ctermbg = 247 })
-  set(0, "User3", { ctermfg = 0,   ctermbg = 245 })
-  set(0, "User4", { ctermfg = 254, ctermbg = 240 })
-  set(0, "User5", { ctermfg = 254, ctermbg = 235 })
-  set(0, "User6", { ctermfg = 0,   ctermbg = 202 })
-  set(0, "User7", { ctermfg = 254, ctermbg = 0, bold = true, cterm = { bold = true } })
+  set(0, "User1", { ctermfg = 0,   ctermbg = 75,  fg = "#000000", bg = "#005f87" })
+  set(0, "User2", { ctermfg = 0,   ctermbg = 247, fg = "#000000", bg = "#d0d0d0" })
+  set(0, "User3", { ctermfg = 0,   ctermbg = 245, fg = "#000000", bg = "#bfbfbf" })
+  set(0, "User4", { ctermfg = 254, ctermbg = 240, fg = "#ffffff", bg = "#000000" })
+  set(0, "User5", { ctermfg = 254, ctermbg = 235, fg = "#ffffff", bg = "#000000" })
+  set(0, "User6", { ctermfg = 0,   ctermbg = 202, fg = "#000000", bg = "#ff8700" })
+  set(0, "User7", { ctermfg = 254, ctermbg = 0,   fg = "#ffffff", bg = "#000000", bold = true, cterm = { bold = true } })
   -- set(0, "User8", { strikethrough = true, cterm = { strikethrough = true }, bg = "NONE", ctermbg = "NONE" })
-  set(0, "User9", { ctermfg = 84,  bg = "NONE", ctermbg = "NONE" })
-  set(0, "User0", { ctermfg = 254, ctermbg = 172 })
+  set(0, "User9", { ctermfg = 84,  bg = "NONE", ctermbg = "NONE", fg = "#00af87" })
+  set(0, "User0", { ctermfg = 254, ctermbg = 172, fg = "#ffffff", bg = "#000000" })
 end
+
 
 local group = vim.api.nvim_create_augroup("MyColorOverrides", { clear = true })
 
@@ -99,3 +106,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 vim.cmd.colorscheme 'habamax'
+
+-- Ensure overrides are applied even if the ColorScheme autocommand didn't run
+-- (some distributions/plugins may set highlights after the event)
+pcall(apply_highlight_overrides)
